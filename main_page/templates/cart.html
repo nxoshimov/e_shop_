@@ -1,0 +1,23 @@
+{% for cart in user_carts %}    
+    Продукт: {{cart.user_product}}<br>
+    Количество: {{cart.product_quantity}}<br>
+    Сумма: {{cart.total_for_current_product}}$<br>
+    <hr>
+    <form action="/delete-product/{{cart.id}}" method="post">
+        {% csrf_token %}
+        <button>Удалить товар с корзины </button>
+
+    </form>
+
+{% endfor %}
+
+{{ total }}
+
+<form action="/send-to-tg" method="post">
+    {% csrf_token %}
+    <input type="text" name="client_name" placeholder="Имя"><br>
+    <input type="text" name="client_adress" placeholder="Ваш адрес"><br>
+    <input type="text" nmae="clien_number" placeholder="Номер телефона"><br>
+    <input type="text" name="clien_comment" placeholder="Комментарий к заказу"><br>
+    <button>Оформить заказ</button>
+</form>
